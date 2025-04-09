@@ -14,6 +14,25 @@ class Tree {
         this._array = array;
         this.root = null;
     }
+
+
+    find(value) {
+        let searchNode = this.root;
+
+        while(searchNode != null) {
+            
+            if(searchNode._data == value) {
+                return searchNode;
+            } else if(searchNode._data > value) {
+                // check left
+                searchNode = searchNode.left;
+            } else if(searchNode._data < value) {
+                //check right
+                searchNode = searchNode.right;
+            }
+        }
+        return searchNode;
+    }
 }
 
 
@@ -38,10 +57,6 @@ function buildTree(array) {
 
     
 
-}
-
-function find(value) {
-    
 }
 
 // Formats to sort array with mergesort and removes duplicates, returning the final array to be used to build the BST
@@ -82,7 +97,12 @@ let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 let tree = new Tree(arr);
 tree.root = buildTree(arr);
 
-prettyPrint(tree.root);
+// let node = tree.find(12);
+// console.log(node);
+
+
+
+// prettyPrint(tree.root);
 
 
 
