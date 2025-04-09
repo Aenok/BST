@@ -15,6 +15,30 @@ class Tree {
         this.root = null;
     }
 
+    insert(value) {
+        let searchNode = this.root;
+        let newNode = new Node(value);
+        while(true) {
+            if(searchNode._data > value) {
+                if(searchNode.left == null) {
+                    searchNode.left = newNode;
+                    break;
+                } else {
+                    searchNode = searchNode.left;
+                }                
+            } else if (searchNode._data < value) {
+                if(searchNode.right == null) {
+                    searchNode.right = newNode;
+                    break;
+                } else {
+                    searchNode = searchNode.right;
+                }
+            } else {
+                return; 
+            }
+        }
+    }
+
 
     find(value) {
         let searchNode = this.root;
@@ -53,10 +77,6 @@ function buildTree(array) {
         return rootNode;
 
     }
-
-
-    
-
 }
 
 // Formats to sort array with mergesort and removes duplicates, returning the final array to be used to build the BST
@@ -103,6 +123,29 @@ tree.root = buildTree(arr);
 
 
 // prettyPrint(tree.root);
+// console.log("------------------")
+// tree.insert(6);
+// prettyPrint(tree.root);
+// console.log("------------------")
+// tree.insert(2);
+// prettyPrint(tree.root);
+// console.log("------------------")
+// tree.insert(7);
+// prettyPrint(tree.root);
+// console.log("------------------")
+// tree.insert(10);
+// prettyPrint(tree.root);
+// console.log("------------------")
+// tree.insert(11);
+// prettyPrint(tree.root);
+// console.log("------------------")
+// tree.insert(10000);
+// prettyPrint(tree.root);
+// console.log("------------------")
+// tree.insert(20000);
+// prettyPrint(tree.root);
+// console.log("------------------")
+
 
 
 
