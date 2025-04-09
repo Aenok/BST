@@ -10,9 +10,9 @@ class Node {
 
 
 class Tree {
-    constructor(array, root) {
+    constructor(array) {
         this._array = array;
-        this._root = null;
+        this.root = null;
     }
 }
 
@@ -27,7 +27,6 @@ function buildTree(array) {
         let finalArr = formatArray(array);
         let rootPos = Math.floor(finalArr.length / 2);
         let rootNode = new Node(finalArr[rootPos]);
-        let tree = new Tree(finalArr, rootNode);
         let leftArr = finalArr.slice(0, rootPos);
         let rightArr = finalArr.slice(rootPos+1, finalArr.length);
         rootNode.left = buildTree(leftArr);
@@ -39,6 +38,10 @@ function buildTree(array) {
 
     
 
+}
+
+function find(value) {
+    
 }
 
 // Formats to sort array with mergesort and removes duplicates, returning the final array to be used to build the BST
@@ -76,9 +79,11 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 };
 
 let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
-let node = buildTree(arr);
+let tree = new Tree(arr);
+tree.root = buildTree(arr);
 
-prettyPrint(node);
+prettyPrint(tree.root);
+
 
 
 
