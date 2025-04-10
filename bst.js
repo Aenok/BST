@@ -1,3 +1,4 @@
+import { error } from 'console';
 import { mergeSort as mergeSort } from './mergesort.js'
 
 class Node {
@@ -143,6 +144,27 @@ class Tree {
         }
         return { prevNode, searchNode };
     }
+
+    levelOrder(callback) {
+        // make sure callback is provided
+        if(callback == undefined) {
+            throw error ("You must provide a callback function");
+        }
+
+        let queue = [];
+        let curr;
+        queue.push(this.root);
+        while(queue.length !== 0) {
+            curr = queue.shift();
+            callback(curr);
+            if(curr.left != null) {
+                queue.push(curr.left);
+            }
+            if(curr.right != null) {
+                queue.push(curr.right);
+            }
+        }
+    }
 }
 
 
@@ -199,9 +221,16 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
     }
 };
 
+function printNodeData(node) {
+    console.log(node._data);
+}
+
 let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 let tree = new Tree(arr);
 tree.root = buildTree(arr);
+prettyPrint(tree.root);
+tree.levelOrder(printNodeData);
+
 
 // let searchResults = tree.find(7);
 // console.log(searchResults);
@@ -232,16 +261,17 @@ tree.root = buildTree(arr);
 // prettyPrint(tree.root);
 // console.log("------------------")
 
-tree.insert(10000);
-tree.insert(8000);
-tree.insert(9000);
-tree.insert(7000);
-tree.insert(20000);
-prettyPrint(tree.root);
-console.log("------------------")
-tree.delete(67);
-prettyPrint(tree.root);
-console.log("------------------")
+// tree.insert(10000);
+// tree.insert(8000);
+// tree.insert(9000);
+// tree.insert(7000);
+// tree.insert(20000);
+// prettyPrint(tree.root);
+// console.log("------------------")
+// tree.levelOrder(printNodeData);
+// tree.delete(67);
+// prettyPrint(tree.root);
+// console.log("------------------")
 
 
 
