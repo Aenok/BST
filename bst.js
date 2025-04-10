@@ -125,6 +125,7 @@ class Tree {
 
 
     find(value) {
+
         let prevNode;
         let searchNode = this.root;
 
@@ -227,7 +228,7 @@ class Tree {
         if(value == undefined) {
             return null;
         }
-        
+
         let root = value;
         let left = 0;
         let right = 0;
@@ -240,6 +241,32 @@ class Tree {
         }
 
         return Math.max(left, right);
+    }
+
+    depth(value, root, first) {
+
+        // checks to see if the value even exists in the tree in the first place. Does this on the first iteration and returns null immediately if value isnt found
+        if(first) {
+            let res = this.find(value);
+            if(res.searchNode == null) {
+                return null
+            }
+        }
+
+        // we found the value
+        if(root._data == value) {
+            return 0;
+        }
+
+        // value is to the left of root
+        if(root._data > value) {
+            return 1 + this.depth(value, root.left, false);
+        }
+
+        // value is to the right of root
+        if(root._data < value) {
+            return 1 + this.depth(value, root.right, false)
+        }
     }
 }
 
@@ -305,6 +332,7 @@ let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 let tree = new Tree(arr);
 tree.root = buildTree(arr);
 prettyPrint(tree.root);
+// console.log(tree.depth(324, tree.root, true));
 // tree.levelOrder(printNodeData);
 // tree.preOrder(tree.root, printNodeData);
 // tree.inOrder(tree.root, printNodeData);
@@ -350,6 +378,7 @@ prettyPrint(tree.root);
 // prettyPrint(tree.root);
 // console.log(tree.height(tree.root));
 // console.log("------------------")
+// console.log(tree.depth(9500, tree.root, true));
 // tree.postOrder(tree.root, printNodeData);
 // tree.levelOrder(printNodeData);
 // tree.preOrder(tree.root, printNodeData);
