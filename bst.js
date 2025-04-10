@@ -145,6 +145,7 @@ class Tree {
         return { prevNode, searchNode };
     }
 
+    // breadth-first-search function which calls a callback function on each node of the tree in level order
     levelOrder(callback) {
         // make sure callback is provided
         if(callback == undefined) {
@@ -164,6 +165,20 @@ class Tree {
                 queue.push(curr.right);
             }
         }
+    }
+
+    preOrder(root, callback) {
+        // make sure callback is provided
+        if(callback == undefined) {
+            throw error ("You must provide a callback function");
+        }
+
+        if(root == null) {
+            return;
+        }
+        callback(root);
+        this.preOrder(root.left, callback);
+        this.preOrder(root.right, callback);
     }
 }
 
@@ -229,7 +244,8 @@ let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 let tree = new Tree(arr);
 tree.root = buildTree(arr);
 prettyPrint(tree.root);
-tree.levelOrder(printNodeData);
+// tree.levelOrder(printNodeData);
+tree.preOrder(tree.root, printNodeData);
 
 
 // let searchResults = tree.find(7);
@@ -261,14 +277,15 @@ tree.levelOrder(printNodeData);
 // prettyPrint(tree.root);
 // console.log("------------------")
 
-// tree.insert(10000);
-// tree.insert(8000);
-// tree.insert(9000);
-// tree.insert(7000);
-// tree.insert(20000);
-// prettyPrint(tree.root);
-// console.log("------------------")
+tree.insert(10000);
+tree.insert(8000);
+tree.insert(9000);
+tree.insert(7000);
+tree.insert(20000);
+prettyPrint(tree.root);
+console.log("------------------")
 // tree.levelOrder(printNodeData);
+tree.preOrder(tree.root, printNodeData);
 // tree.delete(67);
 // prettyPrint(tree.root);
 // console.log("------------------")
