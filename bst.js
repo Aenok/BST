@@ -167,6 +167,7 @@ class Tree {
         }
     }
 
+    // depth-first-search function which calls a callback function on ceach node of the tree in recursive preOrder
     preOrder(root, callback) {
         // make sure callback is provided
         if(callback == undefined) {
@@ -179,6 +180,45 @@ class Tree {
         callback(root);
         this.preOrder(root.left, callback);
         this.preOrder(root.right, callback);
+    }
+
+    // depth-first-search function which calls a callback function on ceach node of the tree in recursive inOrder
+    inOrder(root, callback) {
+        // make sure callback is provided
+        if(callback == undefined) {
+            throw error ("You must provide a callback function");
+        }
+
+        if(root == null) {
+            return;
+        }
+
+        if(root.left != null) {
+            this.inOrder(root.left, callback);
+        }
+        callback(root);
+        if(root.right != null) {
+            this.inOrder(root.right, callback);
+        }
+    }
+    // depth-first-search function which calls a callback function on ceach node of the tree in recursive postOrder
+    postOrder(root, callback) {
+        // make sure callback is provided
+        if(callback == undefined) {
+            throw error ("You must provide a callback function");
+        }
+
+        if(root == null) {
+            return;
+        }
+
+        if(root.left != null) {
+            this.postOrder(root.left, callback);
+        }
+        if(root.right != null) {
+            this.postOrder(root.right, callback);
+        }
+        callback(root);
     }
 }
 
@@ -245,7 +285,9 @@ let tree = new Tree(arr);
 tree.root = buildTree(arr);
 prettyPrint(tree.root);
 // tree.levelOrder(printNodeData);
-tree.preOrder(tree.root, printNodeData);
+// tree.preOrder(tree.root, printNodeData);
+// tree.inOrder(tree.root, printNodeData);
+tree.postOrder(tree.root, printNodeData);
 
 
 // let searchResults = tree.find(7);
@@ -284,8 +326,10 @@ tree.insert(7000);
 tree.insert(20000);
 prettyPrint(tree.root);
 console.log("------------------")
+tree.postOrder(tree.root, printNodeData);
 // tree.levelOrder(printNodeData);
-tree.preOrder(tree.root, printNodeData);
+// tree.preOrder(tree.root, printNodeData);
+// tree.inOrder(tree.root, printNodeData);
 // tree.delete(67);
 // prettyPrint(tree.root);
 // console.log("------------------")
