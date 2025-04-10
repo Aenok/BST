@@ -296,6 +296,21 @@ class Tree {
 
         return balanced;
     }
+
+    balance() {
+
+        let newArr = [];
+        this.levelOrder((node) => {
+            newArr.push(node._data)
+        })
+
+        // for(let i = 0; i < newArr.length; i++) {
+        //     console.log(newArr[i]);
+        // }
+
+        this._array = newArr;
+        this.root = buildTree(newArr);
+    }
 }
 
 
@@ -356,11 +371,11 @@ function printNodeData(node) {
     console.log(node._data);
 }
 
-let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
-let tree = new Tree(arr);
-tree.root = buildTree(arr);
-prettyPrint(tree.root);
-console.log(tree.isBalanced());
+// let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
+// let tree = new Tree(arr);
+// tree.root = buildTree(arr);
+// prettyPrint(tree.root);
+// console.log(tree.isBalanced());
 // console.log(tree.depth(324, tree.root, true));
 // tree.levelOrder(printNodeData);
 // tree.preOrder(tree.root, printNodeData);
@@ -397,15 +412,17 @@ console.log(tree.isBalanced());
 // prettyPrint(tree.root);
 // console.log("------------------")
 
-// console.log(tree.height(tree.root));
-tree.insert(10000);
-tree.insert(8000);
+// // console.log(tree.height(tree.root));
+// tree.insert(10000);
+// tree.insert(8000);
 // tree.insert(9000);
 // tree.insert(9500);
 // tree.insert(7000);
-tree.insert(20000);
-prettyPrint(tree.root);
-console.log(tree.isBalanced());
+// tree.insert(20000);
+// prettyPrint(tree.root);
+// console.log(tree.isBalanced());
+// tree.balance();
+// prettyPrint(tree.root);
 // console.log(tree.height(tree.root));
 // console.log("------------------")
 // console.log(tree.depth(9500, tree.root, true));
