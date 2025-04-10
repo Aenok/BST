@@ -220,6 +220,27 @@ class Tree {
         }
         callback(root);
     }
+
+    // returns the height of the tree defined at "value"
+    height(value) {
+        // if nothing is provided, return null
+        if(value == undefined) {
+            return null;
+        }
+        
+        let root = value;
+        let left = 0;
+        let right = 0;
+        if(root.left != null) {
+            left = 1 + this.height(root.left);
+        }
+
+        if(root.right != null) {
+            right = 1 + this.height(root.right);
+        }
+
+        return Math.max(left, right);
+    }
 }
 
 
@@ -287,7 +308,7 @@ prettyPrint(tree.root);
 // tree.levelOrder(printNodeData);
 // tree.preOrder(tree.root, printNodeData);
 // tree.inOrder(tree.root, printNodeData);
-tree.postOrder(tree.root, printNodeData);
+// tree.postOrder(tree.root, printNodeData);
 
 
 // let searchResults = tree.find(7);
@@ -319,14 +340,17 @@ tree.postOrder(tree.root, printNodeData);
 // prettyPrint(tree.root);
 // console.log("------------------")
 
-tree.insert(10000);
-tree.insert(8000);
-tree.insert(9000);
-tree.insert(7000);
-tree.insert(20000);
-prettyPrint(tree.root);
-console.log("------------------")
-tree.postOrder(tree.root, printNodeData);
+// console.log(tree.height(tree.root));
+// tree.insert(10000);
+// tree.insert(8000);
+// tree.insert(9000);
+// tree.insert(9500);
+// tree.insert(7000);
+// tree.insert(20000);
+// prettyPrint(tree.root);
+// console.log(tree.height(tree.root));
+// console.log("------------------")
+// tree.postOrder(tree.root, printNodeData);
 // tree.levelOrder(printNodeData);
 // tree.preOrder(tree.root, printNodeData);
 // tree.inOrder(tree.root, printNodeData);
